@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports.helloWorld = (event, context, callback) => {
+module.exports.handler = (event, context, callback) => {
   console.log(JSON.stringify(event, null, 2));
   const response = event.Records[0].cf.response;
   const headers = response.headers;

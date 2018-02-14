@@ -11,13 +11,12 @@ service: lambdaedge
 provider:
   name: aws
   runtime: nodejs6.10
-  profile: eetut
   versionFunctions: false
 
 # The `functions` block defines what code to deploy
 functions:
-  helloWorld3:
-    handler: handler.helloWorld
+  time-header:
+    handler: index.handler
     memorySize: 128
     timeout: 5
     # The `events` block defines how to trigger the handler.helloWorld code
