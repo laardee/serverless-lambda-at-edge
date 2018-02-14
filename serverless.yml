@@ -1,0 +1,83 @@
+# Welcome to serverless. Read the docs
+# https://serverless.com/framework/docs/
+
+# Serverless.yml is the configuration the CLI
+# uses to deploy your code to your provider of choice
+
+# The `service` block is the name of the service
+service: lambdaedge
+
+# The `provider` block defines where your service will be deployed
+provider:
+  name: aws
+  runtime: nodejs6.10
+  profile: eetut
+  versionFunctions: false
+
+# The `functions` block defines what code to deploy
+functions:
+  helloWorld3:
+    handler: handler.helloWorld
+    memorySize: 128
+    timeout: 5
+    # The `events` block defines how to trigger the handler.helloWorld code
+    events:
+      # minimal, default cache behavior
+      - cloudFront:
+          eventType: viewer-request # viewer-request | viewer-response | origin-request | origin-response
+          origin: https://serverless.com/docs
+  # goodmorningWorld:
+  #   handler: handler.helloWorld
+  #   memorySize: 128
+  #   timeout: 5
+  #   # The `events` block defines how to trigger the handler.helloWorld code
+  #   events:
+  #     # minimal
+  #     - cloudFront:
+  #         eventType: viewer-request # viewer-request | viewer-response | origin-request | origin-response
+  #         pathPattern: '/docs*'
+  #         origin:
+  #           DomainName: serverless.com
+  #           OriginPath: /framework
+  #           CustomOriginConfig:
+  #             OriginProtocolPolicy: match-viewer
+
+resources:
+  Resources:
+    # IamRoleLambdaExecution:
+    #   Type: AWS::IAM::Role
+    #   Properties:
+    #     AssumeRolePolicyDocument:
+    #       Statement:
+    #       - Effect: Allow
+    #         Principal:
+    #           Service:
+    #           - edgelambda.amazonaws.com
+    #           # - lambda.amazonaws.com
+    #         Action:
+    #         - sts:AssumeRole
+    CloudFrontDistribution:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          # Enabled: true
+          PriceClass: PriceClass_100
+          # IPV6Enabled: true
+    #       DefaultCacheBehavior:
+    #         ViewerProtocolPolicy: allow-all
+    #         TargetOriginId: default-origin
+    #         ForwardedValues:
+    #           QueryString: false
+    #         LambdaFunctionAssociations:
+    #           - EventType: viewer-response
+    #             LambdaFunctionARN:
+    #               Ref: HelloWorldLambdaVersiong7JBOUc0iJ7NnWa1gW0MUyJAThIZPTQKVxt0NESVyM
+    #       Origins:
+    #         - Id: default-origin
+    #           DomainName: www.serverless.com
+    #           CustomOriginConfig:
+    #             OriginProtocolPolicy: match-viewer
+  # Outputs:
+  #   CloudFrontDistribution:
+  #     Value:
+  #       Ref: CloudFrontDistribution
