@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports.handler = (event, context, callback) => {
+module.exports.handler = async event => {
   console.log(JSON.stringify(event, null, 2));
   const response = event.Records[0].cf.response;
   const headers = response.headers;
@@ -9,5 +9,5 @@ module.exports.handler = (event, context, callback) => {
       { key: 'x-time-now', value: Date.now().toString() },
   ];
 
-  return callback(null, response);
+  return response;
 };

@@ -1,30 +1,22 @@
-# Welcome to serverless. Read the docs
-# https://serverless.com/framework/docs/
 
-# Serverless.yml is the configuration the CLI
-# uses to deploy your code to your provider of choice
-
-# The `service` block is the name of the service
 service: lambdaedge
 
-# The `provider` block defines where your service will be deployed
 provider:
   name: aws
-  runtime: nodejs6.10
-  versionFunctions: false
+  runtime: nodejs8.10
+  region: us-east-1
+  stage: dev
 
-# The `functions` block defines what code to deploy
 functions:
   time-header:
     handler: index.handler
     memorySize: 128
     timeout: 5
-    # The `events` block defines how to trigger the handler.helloWorld code
     events:
       # minimal, default cache behavior
       - cloudFront:
           eventType: viewer-request # viewer-request | viewer-response | origin-request | origin-response
-          origin: https://serverless.com/docs
+          origin: https://serverless.com/framework/docs
   # goodmorningWorld:
   #   handler: handler.helloWorld
   #   memorySize: 128
