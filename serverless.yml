@@ -17,58 +17,11 @@ functions:
       - cloudFront:
           eventType: viewer-response  # viewer-request | viewer-response | origin-request | origin-response
           origin: https://serverless.com/framework/docs
-  # goodmorningWorld:
-  #   handler: handler.helloWorld
-  #   memorySize: 128
-  #   timeout: 5
-  #   # The `events` block defines how to trigger the handler.helloWorld code
-  #   events:
-  #     # minimal
-  #     - cloudFront:
-  #         eventType: viewer-request # viewer-request | viewer-response | origin-request | origin-response
-  #         pathPattern: '/docs*'
-  #         origin:
-  #           DomainName: serverless.com
-  #           OriginPath: /framework
-  #           CustomOriginConfig:
-  #             OriginProtocolPolicy: match-viewer
 
 resources:
   Resources:
-    # IamRoleLambdaExecution:
-    #   Type: AWS::IAM::Role
-    #   Properties:
-    #     AssumeRolePolicyDocument:
-    #       Statement:
-    #       - Effect: Allow
-    #         Principal:
-    #           Service:
-    #           - edgelambda.amazonaws.com
-    #           # - lambda.amazonaws.com
-    #         Action:
-    #         - sts:AssumeRole
     CloudFrontDistribution:
       Type: AWS::CloudFront::Distribution
       Properties:
         DistributionConfig:
-          # Enabled: true
           PriceClass: PriceClass_100
-          # IPV6Enabled: true
-    #       DefaultCacheBehavior:
-    #         ViewerProtocolPolicy: allow-all
-    #         TargetOriginId: default-origin
-    #         ForwardedValues:
-    #           QueryString: false
-    #         LambdaFunctionAssociations:
-    #           - EventType: viewer-response
-    #             LambdaFunctionARN:
-    #               Ref: HelloWorldLambdaVersiong7JBOUc0iJ7NnWa1gW0MUyJAThIZPTQKVxt0NESVyM
-    #       Origins:
-    #         - Id: default-origin
-    #           DomainName: www.serverless.com
-    #           CustomOriginConfig:
-    #             OriginProtocolPolicy: match-viewer
-  # Outputs:
-  #   CloudFrontDistribution:
-  #     Value:
-  #       Ref: CloudFrontDistribution
