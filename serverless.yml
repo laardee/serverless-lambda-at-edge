@@ -15,7 +15,7 @@ functions:
     events:
       # minimal, default cache behavior
       - cloudFront:
-          eventType: viewer-request # viewer-request | viewer-response | origin-request | origin-response
+          eventType: viewer-response  # viewer-request | viewer-response | origin-request | origin-response
           origin: https://serverless.com/framework/docs
   # goodmorningWorld:
   #   handler: handler.helloWorld
